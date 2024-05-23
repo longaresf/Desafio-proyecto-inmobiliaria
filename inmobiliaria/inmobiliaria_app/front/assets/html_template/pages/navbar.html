@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid text-white">
+    <a class="navbar-brand" href="/"><img src="/media/_43ae1ddb-6867-4853-927e-6e9cbcb119ae.jpeg" alt="Inmobiliaria Francisco Longares" width="50" height="40"> INMOBILIARIA FRANCISCO
+    <span class="ms-5 ps-5"></span><span class="ms-5 ps-5">
+{% if request.user.is_authenticated %}
+      Usuario: {{ user.username | upper }} | Email: {{ user.email }}</span>
+      <span class="ms-5 ps-5"></span><span class="ms-5 ps-5">
+<a class="nav-link ps-3" href="{% url 'salir' %}">Cerrar Sesión</a>
+{% for group in request.user.groups.all %}
+{% if group.name == 'Arrendatario' %}
+<a class="nav-link ps-3" href="create_inm.html">Publicar</a>
+{% endif %}
+{% endfor %}
+{% else %}
+<span class="ms-5 ps-5"></span><span class="ms-5 ps-5"></span><span class="ms-5 ps-5"></span><span class="ms-5 ps-5"></span>
+  <span class="ms-5 ps-5"></span><a class="nav-link ps-5" href="{% url 'login_page' %}">Iniciar Sesión</a>
+    <a class="nav-link" href="register_user">Registrarse</a>
+{% endif %}</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Opciones</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        {% if request.user.is_authenticated %}
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Perfil usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="{% url 'perfil_user' %}">Mostrar</a></li>
+              <li><a class="dropdown-item" href="{% url 'update_user' %}">Modificar</a></li>
+              <li><a class="dropdown-item" href="{% url 'delete_user' %}" onclick="return confirm('Estás seguro que deseas eliminar el registro?');">Eliminar</a></li>
+              <li>
+            </ul>
+          </li>
+          {% for group in request.user.groups.all %}
+          {% if group.name == 'Arrendatario' %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Publicar
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="create_inm">Crear Publicación</a></li>
+              <li><a class="dropdown-item" href="{% url 'publication_inm' %}">Ver Publicación</a></li>
+              <li><a class="dropdown-item" href="{% url 'update_inm' %}">Modificar Publicación</a></li>
+              <li><a class="dropdown-item" href="" id="delete-user" onclick="return confirm('Estás seguro que deseas eliminar el registro?');">Eliminar Publicación</a></li>
+            </ul>
+          </li>
+          {% endif %}
+          {% endfor %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'salir' %}">Cerrar Sesión</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'login_page' %}">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register_user">Registrarse</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+</html>
+<script src="{% static 'js/scripts.js' %}"></script>

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block mi_contenedor %}
+    <div class="row row-cols-1 row-cols-md-2 g-4 pt-5">
+        <div class="col mx-auto">
+            <div class="card bg-dark text-white-50" style="width: 35rem;">
+                <style>
+                    body {background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))}
+                </style>
+                <div class="text-center pt-5">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <h6 class="card-subtitle pt-3 text-center text-white">PERFIL</h6>
+                <div class="card-body">
+                    <form action="" method="POST">{% csrf_token %}
+                        <div class="form-group">
+
+                            <label for="rut">Rut</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="rut"
+                                   disabled
+                                   value="{{usuario.rut}}">
+
+                            <label for="nombres">Nombres</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="nombres"
+                                   disabled
+                                   value="{{usuario.nombres}}">
+
+                            <label for="apellidos">Apellidos</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="apellidos"
+                                   disabled
+                                   value="{{usuario.apellidos}}">
+
+                            <label for="rut">Dirección</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="direccion"
+                                   disabled
+                                   value="{{usuario.direccion}}">
+
+                            <label for="telefono">Telefono</label><br>
+                              <input type="text"
+                                     class="form-control"
+                                     name="telefono"
+                                     disabled
+                                     value="{{usuario.telefono}}">
+
+                            <label for="email">Email</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="email"
+                                    disabled
+                                    value="{{usuario.email}}">
+
+                            <label for="tipo_user">Tipo</label><br>
+                              <select type="text"
+                                     class="form-control"
+                                     disabled
+                                     name="tipo_user">
+                                     <option value="{{usuario.tipo_user}}">{{usuario.tipo_user}}</option>
+                                        <option value="Arrendador">Arrendador</option>
+                                        <option value="Arrendatario">Arrendatario</option>
+                                      </select>
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="activo"
+                                    disabled
+                                    value="{{usuario.activo}}">
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="usuario"
+                                    disabled
+                                    value="{{usuario.usuario.id}}">
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="creado_por"
+                                    disabled
+                                    value="{{usuario.creado_por}}">
+                        </div>
+                    </form>
+                    <div class="row pt-3">
+                        <div class="col-1"></div>
+                        <a class="btn btn-outline-light btn-lg px-5 col-5" href="/update_user">Modificar</a>
+                        <a class="btn btn-outline-light btn-lg px-5 col-5" href="/">Volver</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-5 row row-cols-2 row-cols-md-3 g-4">
+        {% for i in inm %}
+       
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner card" style="width: 18rem;">
+                      <div class="carousel-item active">
+                        <img src="media/inmobiliaria/{{ i.id }}.webp" class="d-block w-100" alt="{{ i.nombre }}" height="200" width="200">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="media/inmobiliaria/{{ i.id }}.webp" class="d-block w-100" alt="{{ i.nombre }}" height="200" width="200">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="media/inmobiliaria/{{ i.id }}.webp" class="d-block w-100" alt="{{ i.nombre }}" height="200" width="200">
+                      </div>
+                    </div>
+                    <div class="card-body text-white">
+                        <h5 class="card-title">{{i.nombre}}</h5>
+                        <p class="card-text">{{i.direccion}}, {{i.comuna.nombre}}</p>
+                        <p class="card-text">{{i.descripcion}}</p>
+                    </div>
+                    
+                  </div>
+        {% endfor %}
+    </div>
+{% endblock %}

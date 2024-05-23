@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block mi_contenedor %}
+    <div class="row row-cols-1 row-cols-md-2 g-4 pt-5">
+        <div class="col mx-auto">
+            <div class="card bg-dark text-white-50" style="width: 35rem;">
+                <div class="text-center">
+                    {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+                </div>
+                <style>
+                    body {background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))}
+                </style>
+                <h6 class="card-subtitle pt-3 text-center text-white">ACTUALIZAR USUARIO</h6>
+                <div class="card-body">
+                    <form action="" method="POST">{% csrf_token %}
+                        <div class="form-group">
+
+                            <input type="hidden"
+                                   class="form-control"
+                                   name="rut"
+                                   value="{{usuario.rut}}">
+                                    {{ form.rut.errors }}
+
+                            <label for="nombres">Nombres</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="nombres"
+                                   value="{{usuario.nombres}}">
+                                    {{ form.nombres.errors }}
+
+                            <label for="apellidos">Apellidos</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="apellidos"
+                                   value="{{usuario.apellidos}}">
+                                    {{ form.apellidos.errors }}
+
+                            <label for="direccion">Dirección</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="direccion"
+                                   value="{{usuario.direccion}}">
+                                    {{ form.direccion.errors }}
+
+                            <label for="telefono">Telefono</label><br>
+                              <input type="text"
+                                     class="form-control"
+                                     name="telefono"
+                                     value="{{usuario.telefono}}">
+                                        {{ form.telefono.errors }}
+
+                            <label for="email">Email</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="email"
+                                    value="{{usuario.email}}">
+                                        {{ form.email.errors }}
+
+                            <label for="tipo_user">Tipo</label><br>
+                              <select type="text"
+                                     class="form-control"
+                                     name="tipo_user">
+                                     <option value="{{usuario.tipo_user}}">{{usuario.tipo_user}}</option>
+                                        <option value="Arrendador">Arrendador</option>
+                                        <option value="Arrendatario">Arrendatario</option>
+                                      </select>
+                                        {{ form.tipo_user.errors }}
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="activo"
+                                    value="{{usuario.activo}}">
+                                        {{ form.activo.errors }}
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="usuario"
+                                    value="{{usuario.usuario.id}}">
+                                        {{ form.usuario.errors }}
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="creado_por"
+                                    value="{{usuario.creado_por}}">
+                                        {{ form.creado_por.errors }}
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-1"></div>
+                            <button type="submit" class="btn btn-outline-light btn-lg px-5 col-5" onclick="return confirm('Estás seguro que deseas modificar el registro?');">Actualizar</button>
+                            <div class="col-1"></div>
+                            <a class="btn btn-outline-light btn-lg px-5 col-4" href="/">Volver</a>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

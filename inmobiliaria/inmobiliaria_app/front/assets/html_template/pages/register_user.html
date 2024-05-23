@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block mi_contenedor %}
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 pt-5">
+        <div class="col mx-auto">
+            <div class="card bg-dark text-white-50" style="width: 35rem;">
+                <style>
+                    body {background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))}
+                </style>
+                <h6 class="card-subtitle pt-3 text-center text-white">REGISTRO DE USUARIO</h6>
+                <div class="card-body">
+                    <form action="" method="POST">{% csrf_token %}
+                        
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form.rut|as_crispy_field }}
+                            {{ form.rut.errors }}
+                          </div>
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form_2.username|as_crispy_field }}
+                            {{ form_2.username.errors }}
+                          </div>
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.nombres|as_crispy_field }}
+                            {{ form.nombres.errors }}
+                          </div>
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.apellidos|as_crispy_field }}
+                            {{ form.apellidos.errors }}
+                          </div>
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.direccion|as_crispy_field }}
+                            {{ form.direccion.errors }}
+                          </div>
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.telefono|as_crispy_field }}
+                            {{ form.telefono.errors }}
+                          </div>
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form.email|as_crispy_field }}
+                            {{ form.email.errors }}
+                          </div>
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.tipo_user|as_crispy_field }}
+                            {{ form.tipo_user.errors }}
+                          </div>
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form_2.password1|as_crispy_field }}
+                            {{ form_2.password1.errors }}
+                          </div>
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form_2.password2|as_crispy_field }}
+                            {{ form_2.password2.errors }}
+                          </div>
+                        <input type="hidden"
+                                class="form-control"
+                                name="activo"
+                                value=True>
+                                {{ form.activo.errors }}
+
+                        <input type="hidden"
+                                class="form-control"
+                                name="usuario"
+                                value=1>
+
+                        <input type="hidden"
+                                class="form-control"
+                                name="creado_por"
+                                value="user">
+
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <button type="submit" class="btn btn-outline-light btn-lg px-5 col-5 gap-2">Registrarse</button>
+                          <a class="btn btn-outline-light btn-lg px-5 col-5 gap-2" href="{% url 'home' %}">Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

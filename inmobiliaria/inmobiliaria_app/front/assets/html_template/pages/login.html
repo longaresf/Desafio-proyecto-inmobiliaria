@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block mi_contenedor %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 pt-5">
+        <div class="col mx-auto">
+            <div class="card bg-dark text-white-50" style="width: 30rem;">
+              <style>
+                body {background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))}
+            </style>
+                <h6 class="card-subtitle pt-3 text-center text-white">Inicia Sesión</h6>
+                  <div class="card-body">
+                    <form action="" method="POST">{% csrf_token %}
+                        {{ form|crispy}}
+                        <div class="row">
+                            <button type="submit" class="btn btn-outline-light btn-lg px-5 col-6">Iniciar</button>
+                            <a class="btn btn-outline-light btn-lg px-5 col-6" href="/">Volver</a>
+                      </div>
+                    </form>
+                    <p class="text-center pt-3 fw-semibold">Únete ahora a Inmobiliaria Francisco</p>
+                    <p class="text-center">Obtén la mayor y mejor información de propiedades</p>
+                  </div>
+            </div>
+        </div>
+    </div>
+    {% if form.errors %}
+    <p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Su cuenta no tiene acceso a esta página. Para continuar,
+        inicie sesión con una cuenta que tenga acceso.</p>
+    {% else %}
+      <p>Por favor inicie sesión para ver esta página.</p>
+    {% endif %}
+  {% endif %}
+  <p>{{ message }}</p>
+{% endblock %}

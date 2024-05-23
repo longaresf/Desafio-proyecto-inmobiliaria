@@ -1,0 +1,12 @@
+.venv
+.env
+scritps_sql/
+sql-Models.txt
+Regiones_Provincias_Comunas_Chile/BDCUT_CL__PosgreSQL_utf8__generado.sql
+Hito1
+Hito2
+img
+db.sqlite3
+db_indent_all.json
+db_indent_all_ansi.json
+migrations

@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block mi_contenedor %}
+    <div class="row row-cols-1 row-cols-md-2 g-4 pt-5">
+        <div class="col mx-auto">
+            <div class="card bg-dark text-white-50" style="width: 35rem;">
+                <div class="text-center">
+                    {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+                </div>
+                <style>
+                    body {background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))}
+                </style>
+                <h6 class="card-subtitle pt-3 text-center text-white">REGISTRO DE INMUEBLE</h6>
+                <div class="card-body">
+                    <form action="" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            
+                            <label for="id" class="text_white-50">Id</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                   name="id"
+                                   disabled
+                                   value="{{inm.id}}">
+
+                            <label for="nombre" class="text_white-50">Nombre</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                   name="nombre"
+                                   value="{{inm.nombre}}">
+
+                            <label for="descripcion" class="text_white-50">Descripción</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                   name="descripcion"
+                                   disabled
+                                   value="{{inm.descripcion}}">
+
+                            <label for="construido" class="text_white-50">Área Construida</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                   name="construido"
+                                   disabled
+                                   value="{{inm.construido}}">
+
+                            <label for="totales" class="text_white-50">Área Total</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                   name="totales"
+                                   disabled
+                                   value="{{inm.totales}}">
+
+                            <label for="estacionamiento" class="text_white-50">Estacionamiento</label><br>
+                              <input type="text"
+                                    class="form-control"
+                                     name="estacionamiento"
+                                     disabled
+                                     value="{{inm.estacionamiento}}">
+
+                            <label for="habitaciones" class="text_white-50">Habitaciones</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="habitaciones"
+                                    disabled
+                                    value="{{inm.habitaciones}}">
+
+                            <label for="banios" class="text_white-50">Baños</label><br>
+                              <input type="text"
+                                    class="form-control"
+                                     name="banios"
+                                     disabled
+                                    value="{{inm.banios}}">
+
+                            <label for="direccion" class="text_white-50">Direccion</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="direccion"
+                                    disabled
+                                    value="{{inm.direccion}}">
+
+                            <label for="comuna" class="text_white-50">Comuna</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="comuna"
+                                    disabled
+                                    value="{{inm.comuna}}">
+
+                            <label for="inmueble_tipo" class="text_white-50">Tipo</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="inmueble_tipo"
+                                    disabled
+                                    value="{{inm.inmueble_tipo}}">
+
+                            <label for="arriendo_mes" class="text_white-50">Arriendo Mensual</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="arriendo_mes"
+                                    disabled
+                                    value="{{inm.arriendo_mes}}">
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="activo"
+                                    value="{{inm.activo}}">
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="creado_por"
+                                    value={{inm.creado_por}}>
+                        </div>
+                    </form>
+                      <div class="row p-3">
+                        <a class="btn btn-outline-light btn-lg px-5 col-4" href="{% url 'image_add' inm.id %}">Imagen</a>
+                        <a class="btn btn-outline-light btn-lg px-5 col-4" href="{% url 'home' %}">Volver</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

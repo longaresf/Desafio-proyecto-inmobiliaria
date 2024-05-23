@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block mi_contenedor %}
+    <div class="row row-cols-1 row-cols-md-2 g-4 pt-5">
+        <div class="col mx-auto">
+            <div class="card bg-dark text-white-50" style="width: 35rem;">
+                <div class="text-center">
+                    {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+                </div>
+                <style>
+                    body {background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))}
+                </style>
+                <h6 class="card-subtitle pt-3 text-center text-white">REGISTRO DE INMUEBLE</h6>
+                <div class="card-body">
+                    <form action="" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            
+                            <input type="hidden"
+                                   class="form-control"
+                                   name="id"
+                                   value="{{inm.id}}">
+                                    {{ form.id.errors }}
+
+                            <label for="nombre">Nombre</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="nombre"
+                                   value="{{inm.nombre}}">
+                                    {{ form.nombre.errors }}
+
+                            <label for="descripcion">Descripción</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="descripcion"
+                                   value="{{inm.descripcion}}">
+                                    {{ form.descripcion.errors }}
+
+                            <label for="construido">Área Construida</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="construido"
+                                   value="{{inm.construido}}">
+                                    {{ form.construido.errors }}
+
+                            <label for="totales">Área Total</label><br>
+                            <input type="text"
+                                   class="form-control"
+                                   name="totales"
+                                   value="{{inm.totales}}">
+                                    {{ form.totales.errors }}
+
+                            <label for="estacionamiento">Estacionamiento</label><br>
+                              <input type="text"
+                                     class="form-control"
+                                     name="estacionamiento"
+                                     value="{{inm.estacionamiento}}">
+                                        {{ form.estacionamiento.errors }}
+
+                            <label for="habitaciones">Habitaciones</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="habitaciones"
+                                    value="{{inm.habitaciones}}">
+                                        {{ form.habitaciones.errors }}
+
+                            <label for="banios">Baños</label><br>
+                              <input type="text"
+                                     class="form-control"
+                                     name="banios"
+                                    value="{{inm.banios}}">
+                                        {{ form.banios.errors }}
+
+                            <label for="direccion">Direccion</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="direccion"
+                                    value="{{inm.direccion}}">
+                                        {{ form.direccion.errors }}
+
+                            <label for="comuna">Comuna</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="comuna"
+                                    value="{{inm.comuna}}">
+                                        {{ form.comuna.errors }}
+
+                            <label for="inmueble_tipo">Tipo de Inmueble</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="inmueble_tipo"
+                                    value="{{inm.inmueble_tipo}}">
+                                        {{ form.inmueble_tipo.errors }}
+
+                            <label for="arriendo_mes">Arriendo Mensual</label><br>
+                            <input type="text"
+                                    class="form-control"
+                                    name="arriendo_mes"
+                                    value="{{inm.arriendo_mes}}">
+                                        {{ form.arriendo_mes.errors }}
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="activo"
+                                    value="{{user.activo}}">
+
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="creado_por"
+                                    value={{user.username}}>
+                        </div>
+                        <div class="row pt-3">
+                            <button type="submit" class="btn btn-outline-light btn-lg px-5 col-4">Cambiar</button>
+                            <a class="btn btn-outline-light btn-lg px-5 col-4" href="{% url 'home' %}">Volver</a>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

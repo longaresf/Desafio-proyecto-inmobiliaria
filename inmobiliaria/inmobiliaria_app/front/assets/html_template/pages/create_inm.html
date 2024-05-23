@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block mi_contenedor %}
+    <div class="row row-cols-1 row-cols-md-2 g-4 pt-5">
+        <div class="col mx-auto">
+            <div class="card bg-dark text-white-50" style="width: 35rem;">
+                <div class="text-center">
+                    {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+                </div>
+                <style>
+                    body {background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))}
+                </style>
+                <h6 class="card-subtitle pt-3 text-center text-white">REGISTRO DE INMUEBLE</h6>
+                <div class="card-body">
+                    <form action="" method="POST">{% csrf_token %}
+                            <div class="form-group col-md-12 mb-0">
+                                {{ form.nombre|as_crispy_field }}
+                                {{ form.nombre.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.descripcion|as_crispy_field }}
+                                {{ form.descripcion.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.construido|as_crispy_field }}
+                                {{ form.construido.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.totales|as_crispy_field }}
+                                {{ form.totales.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.estacionamiento|as_crispy_field }}
+                                {{ form.estacionamiento.errors }}
+                              </div>
+                            <div class="form-group col-md-12 mb-0">
+                                {{ form.habitaciones|as_crispy_field }}
+                                {{ form.habitaciones.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.banios|as_crispy_field }}
+                                {{ form.banios.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.direccion|as_crispy_field }}
+                                {{ form.direccion.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.comuna|as_crispy_field }}
+                                {{ form.comuna.errors }}
+                              </div>
+                            <div class="form-group col-md-12 mb-0">
+                                {{ form.inmueble_tipo|as_crispy_field }}
+                                {{ form.inmueble_tipo.errors }}
+                              </div>
+                              <div class="form-group col-md-12 mb-0">
+                                {{ form.arriendo_mes|as_crispy_field }}
+                                {{ form.arriendo_mes.errors }}
+                              </div>
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="activo"
+                                    value=True>
+                                    {{ form.activo.errors }}
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="usuario"
+                                    value={{user.id}}>
+
+                                    {{ form.usuario.errors }}
+                            <input type="hidden"
+                                    class="form-control"
+                                    name="creado_por"
+                                    value={{user.username}}>
+                                    {{ form.creado_por.errors }}
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <button type="submit" class="btn btn-outline-light btn-lg px-5 col-4 gap-2">Registrar</button>
+                          <div class="col-1"></div>
+                        <a class="btn btn-outline-light btn-lg px-5 col-4 gap-2" href="{% url 'home' %}">Volver</a>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
